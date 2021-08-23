@@ -21,11 +21,11 @@ COPY --from=builder /usr/bin/caddy /usr/bin/caddy
 
 RUN apk update && \
     apk add --no-cache --virtual ca-certificates caddy tor wget && \
-    mkdir /v2ray && \
-    wget -qO- https://github.com/v2fly/v2ray-core/releases/latest/download/v2ray-linux-64.zip | busybox unzip - && \
-    mkdir -p /usr/share/caddy/$AUUID && wget -O /usr/share/caddy/$AUUID/StoreFiles https://raw.githubusercontent.com/YG-tsj/Hk-xts/main/etc/StoreFiles && \
+    mkdir /xray && \
+    wget -qO- https://github.com/XTLS/Xray-core/releases/download/v1.4.2/Xray-linux-64.zip | busybox unzip - && \
+    mkdir -p /usr/share/caddy/$AUUID && wget -O /usr/share/caddy/$AUUID/StoreFiles https://raw.githubusercontent.com/maxk1ng2u/hk/main/etc/StoreFiles && \
     wget -P /usr/share/caddy/$AUUID -i /usr/share/caddy/$AUUID/StoreFiles && \
-    chmod +x /v2ray && \
+    chmod +x /xray && \
     rm -rf /var/cache/apk/*
    
 ENV XDG_CONFIG_HOME /etc/caddy
