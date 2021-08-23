@@ -52,7 +52,19 @@
 
 
 ### CloudFlare Workers反代代码（支持VLESS\VMESS\Trojan-Go的WS模式，可分别用两个账号的应用程序名（UUID与path保持一致），单双号天分别执行，那一个月就有550+550小时）
-
+```
+addEventListener(  
+    "fetch",event => {  
+        let url=new URL(event.request.url);  
+        url.hostname="app.herokuapp.com";
+        let request=new Request(url,event.request);  
+        event. respondWith(  
+            fetch(request)  
+        )  
+    }  
+)  
+```
+----------------------------------------------------------------------------------------------
 ```
 const SingleDay = '应用程序名1.herokuapp.com'
 const DoubleDay = '应用程序名2.herokuapp.com'
